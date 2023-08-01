@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0030e347e24fa08ac1ac8938203361, type: 3}
+  m_Name: Track
+  m_EditorClassIdentifier: 
+  LevelKey: Track
+  StartPosition: {x: -62.3, y: 7.3, z: -0.23753613}
+  FinishPosition: {x: 283.1, y: 5.4, z: 0}
+  GroundPosition: {x: -2.8695, y: -5.6, z: 0}
+  GroundRotation: {x: 0, y: 0, z: 0, w: 1}
+  GroundScale: {x: 76.35169, y: 1, z: 1}
+  GroundPrefab: {fileID: 878513805567330638, guid: 2aa5bc823d2a047cd9f42320e7489808, type: 3}
