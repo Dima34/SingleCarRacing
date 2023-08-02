@@ -1,14 +1,16 @@
+using Cinemachine;
 using Infrastructure.Logic.Car;
+using StaticData;
 using UnityEngine;
 
 namespace Infrastructure.Factory.TrackFactory
 {
     public interface ITrackFactory
     {
-        CarMovement CreateCar();
-        void CreateGround();
-        void CreateAndInitializeCamera(Transform transformToFollow);
+        GameObject CreateGround();
+        CinemachineVirtualCamera CreateCamera();
         void CreateHUD();
-        void CreateFinish();
+        GameObject CreateFinish();
+        CarMovement CreateCar();
     }
 }
