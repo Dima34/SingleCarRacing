@@ -1,26 +1,18 @@
 using Infrastructure.Factory.TrackFactory;
-using Infrastructure.Logic.Car;
+using Infrastructure.Services.LevelCreator;
 using Zenject;
 
 namespace Infrastructure.Installers
 {
-    public class TrackInstaller : MonoInstaller, IInitializable
+    public class TrackInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {
-            RegisterInializerAsInitializable();
-            BindTrackFactory();
+            InstallTrackFactory();
+            InstallLevelCreator();
         }
 
-        private void RegisterInializerAsInitializable()
-        {
-            Container
-                .BindInterfacesTo<TrackInstaller>()
-                .FromInstance(this)
-                .AsSingle();
-        }
-
-        private void BindTrackFactory()
+        private void InstallTrackFactory()
         {
             Container
                 .BindInterfacesAndSelfTo<TrackFactory>()
@@ -28,30 +20,12 @@ namespace Infrastructure.Installers
                 .NonLazy();
         }
 
-        public void Initialize()
+        private void InstallLevelCreator()
         {
-            ITrackFactory trackFactory = Container.Resolve<TrackFactory>();
-
-            CreateGround(trackFactory);
-            var car = CreateCar(trackFactory);
-            CreateAndInitializeCamera(trackFactory, car);
-            CreateFinish(trackFactory);
-            CreateHUD(trackFactory);
+            Container
+                .Bind<ILevelCreatorService>()
+                .To<LevelCreatorServiceService>()
+                .AsSingle();
         }
-
-        private void CreateFinish(ITrackFactory trackFactory) =>
-            trackFactory.CreateFinish();
-
-        private void CreateHUD(ITrackFactory trackFactroy) =>
-            trackFactroy.CreateHUD();
-
-        private static void CreateGround(ITrackFactory trackFactory) =>
-            trackFactory.CreateGround();
-
-        private static CarMovement CreateCar(ITrackFactory trackFactory) =>
-            trackFactory.CreateCar();
-
-        private static void CreateAndInitializeCamera(ITrackFactory trackFactory, CarMovement car) =>
-            trackFactory.CreateAndInitializeCamera(car.transform);
     }
 }
