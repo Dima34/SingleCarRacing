@@ -23,8 +23,7 @@ namespace Infrastructure.Installers
         private void InstallLevelCreator()
         {
             Container
-                .Bind<ILevelCreatorService>()
-                .To<LevelCreatorServiceService>()
+                .BindInterfacesAndSelfTo<LevelCreatorServiceService>()
                 .AsSingle();
         }
     }
